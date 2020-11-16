@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="argos_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0377652748892957 -0.0209250714999895 0.103550542922571"
+        rpy="0 0 0" />
+      <mass
+        value="13.4937168146928" />
+      <inertia
+        ixx="1.08636318950784"
+        ixy="4.36039567465071E-16"
+        ixz="2.00421333344687E-16"
+        iyy="0.632818984557334"
+        iyz="2.82387821223199E-05"
+        izz="1.36808980383463" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="right_rear_motor_link">
+    <inertial>
+      <origin
+        xyz="0 -0.0025 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.021697" />
+      <inertia
+        ixx="7.8085E-06"
+        ixy="-1.916E-22"
+        ixz="-4.2352E-22"
+        iyy="1.5527E-05"
+        iyz="-4.623E-22"
+        izz="7.8085E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_rear_motor_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_rear_motor_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_rear_motor_joint"
+    type="continuous">
+    <origin
+      xyz="0.21723 -0.19595 0.00082273"
+      rpy="0 -0.3918 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_rear_motor_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="right_mid_gear_link">
+    <inertial>
+      <origin
+        xyz="-1.98408997564847E-17 0.002 -2.32452945780892E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0216966242638545" />
+      <inertia
+        ixx="7.80852466996015E-06"
+        ixy="5.02080282874028E-22"
+        ixz="0"
+        iyy="1.55266467388209E-05"
+        iyz="1.16710758237386E-35"
+        izz="7.80852466996015E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_mid_gear_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_mid_gear_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_mid_gear_joint"
+    type="continuous">
+    <origin
+      xyz="0.16174 -0.0045 -0.066824"
+      rpy="-3.1416 1.179 -3.1416" />
+    <parent
+      link="right_rear_motor_link" />
+    <child
+      link="right_mid_gear_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="right_mid_wheel_link">
+    <inertial>
+      <origin
+        xyz="2.2551E-16 0.0155 4.0332E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.82012" />
+      <inertia
+        ixx="0.0034203"
+        ixy="-6.3517E-21"
+        ixz="4.8789E-19"
+        iyy="0.0067179"
+        iyz="-1.8115E-19"
+        izz="0.0034203" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_mid_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_mid_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_mid_wheel_joint"
+    type="fixed">
+    <origin
+      xyz="0.28277 0 0"
+      rpy="-3.1416 1.5127 0" />
+    <parent
+      link="right_mid_gear_link" />
+    <child
+      link="right_mid_wheel_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="right_rear_gear_link">
+    <inertial>
+      <origin
+        xyz="-6.98226199080665E-17 0.00749999999999987 -1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0216966242638545" />
+      <inertia
+        ixx="7.80852466996015E-06"
+        ixy="-5.02080282874028E-22"
+        ixz="-3.74939945665465E-41"
+        iyy="1.55266467388209E-05"
+        iyz="-2.43906422185256E-57"
+        izz="7.80852466996015E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_rear_gear_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_rear_gear_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_rear_gear_joint"
+    type="continuous">
+    <origin
+      xyz="-0.16174 -0.005 0.066824"
+      rpy="-3.1416 1.179 -3.1416" />
+    <parent
+      link="right_rear_motor_link" />
+    <child
+      link="right_rear_gear_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="right_rear_wheel_link">
+    <inertial>
+      <origin
+        xyz="-8.32667268468867E-17 0.015 5.55111512312578E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.820122101622576" />
+      <inertia
+        ixx="0.00342027097529298"
+        ixy="2.01461140192011E-19"
+        ixz="1.19262238973405E-18"
+        iyy="0.00671792488217428"
+        iyz="4.2187156765204E-20"
+        izz="0.00342027097529298" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_rear_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_rear_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_rear_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.28277 0 0"
+      rpy="3.1416 -0.17799 0" />
+    <parent
+      link="right_rear_gear_link" />
+    <child
+      link="right_rear_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="right_front_wheel_link">
+    <inertial>
+      <origin
+        xyz="-5.55111512312578E-17 0.015 -6.93889390390723E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.820122101622575" />
+      <inertia
+        ixx="0.00342027097529298"
+        ixy="6.74204766962017E-20"
+        ixz="-2.71050543121376E-19"
+        iyy="0.00671792488217427"
+        iyz="-2.84377181797463E-19"
+        izz="0.00342027097529297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_front_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/right_front_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_front_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.21223 0.32905 0.00082273"
+      rpy="0 0.1857 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_front_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_front_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 0.015 1.38777878078145E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.820122101622576" />
+      <inertia
+        ixx="0.00342027097529298"
+        ixy="2.48187406627788E-20"
+        ixz="5.96311194867027E-19"
+        iyy="0.00671792488217428"
+        iyz="2.81064112758757E-19"
+        izz="0.00342027097529298" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_front_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_front_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_front_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.28777 0.32905 0.00082273"
+      rpy="3.1416 0.1857 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_front_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_rear_motor_link">
+    <inertial>
+      <origin
+        xyz="-1.38777878078145E-16 -0.0025 -4.16333634234434E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0216966242638545" />
+      <inertia
+        ixx="7.80852466996016E-06"
+        ixy="-1.59887894548014E-22"
+        ixz="-2.11758236813575E-22"
+        iyy="1.55266467388209E-05"
+        iyz="3.88435361031883E-22"
+        izz="7.80852466996015E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_rear_motor_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_rear_motor_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_rear_motor_joint"
+    type="continuous">
+    <origin
+      xyz="-0.29277 -0.19595 0.00082273"
+      rpy="3.1416 -0.3918 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_rear_motor_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_rear_gear_link">
+    <inertial>
+      <origin
+        xyz="2.16840434497101E-19 0.00249999999999995 5.55111512312578E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0216966242638545" />
+      <inertia
+        ixx="7.80852466996015E-06"
+        ixy="5.02080282874028E-22"
+        ixz="-3.74939945665465E-41"
+        iyy="1.55266467388209E-05"
+        iyz="2.43906422185256E-57"
+        izz="7.80852466996015E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_rear_gear_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_rear_gear_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_rear_gear_joint"
+    type="continuous">
+    <origin
+      xyz="-0.161739303728853 0 -0.0668236307701537"
+      rpy="-3.14159265358979 -1.17899991460539 3.14159265358979" />
+    <parent
+      link="left_rear_motor_link" />
+    <child
+      link="left_rear_gear_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_rear_wheel_link">
+    <inertial>
+      <origin
+        xyz="1.38777878078145E-17 0.0200000000000001 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.820122101622576" />
+      <inertia
+        ixx="0.00342027097529298"
+        ixy="-2.79214332337302E-19"
+        ixz="-5.42101086242752E-20"
+        iyy="0.00671792488217428"
+        iyz="5.55425286818948E-20"
+        izz="0.00342027097529298" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_rear_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_rear_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_rear_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="3.14159265358979 0.17799306621387 0" />
+    <parent
+      link="left_rear_gear_link" />
+    <child
+      link="left_rear_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_mid_gear_link">
+    <inertial>
+      <origin
+        xyz="-1.57209315010398E-17 0.002 1.87350135405495E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.0216966242638545" />
+      <inertia
+        ixx="7.80852466996015E-06"
+        ixy="1.58992089576735E-20"
+        ixz="-3.37037740267766E-34"
+        iyy="1.55266467388209E-05"
+        iyz="-1.76732259571658E-19"
+        izz="7.80852466996015E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_mid_gear_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_mid_gear_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_mid_gear_joint"
+    type="continuous">
+    <origin
+      xyz="0.161739303728853 -0.0045 0.0668236307701537"
+      rpy="-3.14159265358977 -1.17899991460537 3.14159265358979" />
+    <parent
+      link="left_rear_motor_link" />
+    <child
+      link="left_mid_gear_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_mid_wheel_link">
+    <inertial>
+      <origin
+        xyz="2.15105711021124E-16 0.0154999999999999 -2.64545330086463E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.820122101622574" />
+      <inertia
+        ixx="0.00342027097529297"
+        ixy="5.33859423250118E-20"
+        ixz="1.0842021724855E-19"
+        iyy="0.00671792488217427"
+        iyz="2.05696505401071E-19"
+        izz="0.00342027097529297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_mid_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/left_mid_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_mid_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="3.1415926535894 -1.51273617278772 0" />
+    <parent
+      link="left_mid_gear_link" />
+    <child
+      link="left_mid_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="mast_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/mast_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/mast_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="mast_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0377652748892956 0.179054556844005 -0.0214972687720274"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="mast_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="0 0.075 2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="6" />
+      <inertia
+        ixx="0.03125"
+        ixy="-7.22801448323669E-19"
+        ixz="-1.09865820145197E-19"
+        iyy="0.04"
+        iyz="-5.42101086242748E-19"
+        izz="0.03125" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://argos_description/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.6 0"
+      rpy="0 0 0" />
+    <parent
+      link="mast_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

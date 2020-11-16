@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+
+<!-- This file launches the argos robot controller spawner, which plugs into
+     gazebo to allow the argos to be controlled. -->
+
+<!-- <launch>
+
+  <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
+
+  <rosparam command="load" file="$(find argos_control)/config/control.yaml" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+      args="argos_joint_publisher argos_velocity_controller namespace=/argos" />
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <rosparam command="load" file="$(find argos_control)/config/robot_localization.yaml" />
+  </node>
+ -->
+<!--   <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find argos_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="argos_velocity_controller/cmd_vel"/>
+  </node> -->
+
+<!--   <group if="$(optenv argos_CONTROL_EXTRAS 0)" >
+    <rosparam command="load" file="$(env argos_CONTROL_EXTRAS_PATH)" />
+  </group>
+ -->
+<!-- </launch> -->
+
+
+<launch>
+  <!-- Namespace must be unique. -->
+  <arg name="ns" default="argos"/>
+  <arg name="x"     default="0"/>
+  <arg name="y"     default="0"/>
+  <arg name="z"     default="0"/>
+  <arg name="roll"  default="0"/>
+  <arg name="pitch" default="0"/>
+  <arg name="yaw"   default="0"/>
+  <arg name="use_move_base"  default="false"/>
+  <arg name="use_global_ekf" default="true"/>
+  <arg name="use_global_tf"  default="false"/>
+  <!-- Load the controller parameters. Also add the namespace to the frames, this 
+       can't be done in the YAML file so we override it here. -->
+  <rosparam command="load" 
+            file="$(find argos_control)/config/control.yaml" 
+            ns="$(arg ns)"
+  />
+<!--   <node pkg="tf" type="static_transform_publisher" name="world_publisher" args="0 0 0.0 0 0 0 odom base_link 100" ns="argos"/> -->
+<!--   <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom 100" />
+  <node pkg="tf" type="static_transform_publisher" name="odom_to_base" args="0 0 0 0 0 0 odom base_link 100" /> -->
+<!--   <node pkg="tf" type="static_transform_publisher" name="imu_to_robot_base" args="0 0 0 0 0 0 base_link imu_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="nav_to_robot_base" args="0 0 0 0 0 0 base_link navsat_link 100" /> -->
+  <param name="$(arg ns)/argos_velocity_controller/odom_frame_id" value="odom"/>
+  <param name="$(arg ns)/argos_velocity_controller/base_frame_id" value="base_link"/>
+  
+  <!-- Spawn the jackal controls. -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+      args="argos_joint_publisher argos_velocity_controller" ns="$(arg ns)">
+  </node>
+
+  <!-- Robot localisation, takes IMU and wheel odometry to form a single localisation
+       estimate. This is the local filter, providing the odom to base_link transformation. -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="local_ekf_localization" ns="$(arg ns)">
+    <rosparam command="load" file="$(find argos_nav)/params/local_ekf.yaml"/>
+    <param name="publish_tf" value="true" />
+    <param name="map_frame"       value="map"/>
+    <param name="odom_frame"      value="odom"/>
+    <param name="base_link_frame" value="base_link"/>
+    <param name="world_frame"     value="odom"/>
+    <remap from="odometry/filtered" to="odometry/local_filtered"/>
+  </node>
+
+  <!-- Robot localisation, takes GPS signals and fuses them with local odometry
+       to form a single localisation estimate. This is the global filter, providing
+       the map to odom transformation. -->
+  <group if="$(arg use_global_ekf)">
+    <node ns="$(arg ns)" pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" output="screen">
+      <param name="publish_tf" value="true" />
+      <param name="delay"                        value="5.0"/>
+      <param name="yaw_offset"                   value="1.5707963"/>
+      <param name="magnetic_declination_radians" value="0.13759"/>
+      <param name="zero_altitude"                value="true"/>
+      <param name="broadcast_utm_transform"      value="true"/>
+      <!--<param name="publish_filtered_gps"    value="true"/>
+      <param name="wait_for_datum"          value="true"/>
+      <rosparam param="datum">[49.9, 9.0, 0]</rosparam>-->
+      <remap from="imu/data"          to="imu/data"/>
+      <remap from="odometry/filtered" to="odometry/global_filtered"/>
+    </node>
+    <node pkg="robot_localization" type="ekf_localization_node" name="global_ekf_localization" ns="$(arg ns)" clear_params="true">
+      <rosparam command="load" file="$(find argos_nav)/params/global_ekf.yaml"/>
+      <param name="publish_tf" value="true" />
+      <param name="map_frame"       value="map"/>
+      <param name="odom_frame"      value="odom"/>
+      <param name="base_link_frame" value="base_link"/>
+      <param name="world_frame"     value="map"/>
+      <rosparam param="initial_state" subst_value="true">
+         [   $(arg x),     $(arg y),   $(arg z),
+          $(arg roll), $(arg pitch), $(arg yaw),
+                  0.0,          0.0,        0.0,
+                  0.0,          0.0,        0.0,
+                  0.0,          0.0,        0.0]
+      </rosparam>
+      <remap from="odometry/filtered" to="odometry/global_filtered"/>
+    </node>
+  </group>
+</launch>
+
+
